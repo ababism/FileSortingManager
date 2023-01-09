@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 /**
- * Класс реализующий обработку файлов и ее сортировку соотвественно с тз
+ * Класс реализующий обработку файлов и ее сортировку соответственно с тз
  */
 public class FileSorter {
     /**
@@ -25,9 +25,9 @@ public class FileSorter {
     private final File chefDirectory;
 
     /**
-     * Конструктор он корневой папки, выводит сообщения в консоль о коррекности создания
+     * Конструктор он корневой папки, выводит сообщения в консоль о корректности создания
      *
-     * @param rootDirectoryName абослюный путь до корневой папки
+     * @param rootDirectoryName абсолютный путь до корневой папки
      */
     public FileSorter(String rootDirectoryName) {
         chefDirectory = new File(rootDirectoryName);
@@ -35,7 +35,7 @@ public class FileSorter {
     }
 
     /**
-     * Инциализирует или обновляет файлы в папке и выводит сообщения в консоль
+     * Инициализирует или обновляет файлы в папке и выводит сообщения в консоль
      *
      * @return правильно ли указана корневая папка
      */
@@ -44,7 +44,7 @@ public class FileSorter {
 
         addFilesFrom(chefDirectory);
         if (isRootLegit()) {
-            System.out.println("Файлы из корневой дирертории" + chefDirectory.getAbsolutePath() + " инициализированны");
+            System.out.println("Файлы из корневой директории" + chefDirectory.getAbsolutePath() + " инициализированы");
             return true;
         } else {
             System.out.println("Путь до корневой директории указан некорректно");
@@ -62,7 +62,7 @@ public class FileSorter {
     }
 
     /**
-     * Произодится конкатинация файлов
+     * Производится конкатенация файлов
      */
     public void concatenateFiles() {
         System.out.println("--------------------------------------------------");
@@ -73,10 +73,10 @@ public class FileSorter {
             return;
         }
         if (parseFilesToGraph()) {
-            System.out.println("Файлы успешно обаботаны");
+            System.out.println("Файлы успешно обработаны");
             dependencySort();
         } else {
-            System.out.println("Не удалось обработать файлы, исправте ошибку и попробуйте еще раз");
+            System.out.println("Не удалось обработать файлы, исправьте ошибку и попробуйте еще раз");
             return;
         }
         System.out.println("--------------------------------------------------");
@@ -88,12 +88,12 @@ public class FileSorter {
      */
     private void dependencySort() {
         if (!isAcyclic()) {
-            System.out.println("Указанная папка содержит циклические зависимоти: " + chefDirectory.getAbsolutePath());
+            System.out.println("Указанная папка содержит циклические зависимости: " + chefDirectory.getAbsolutePath());
             System.out.println("Отсортировать невозможно, удалите циклические зависимости");
             return;
         }
         List<Integer> sortedIndexes = graph.topologicalSort().stream().toList();
-        System.out.println("Файлы успешно отсорированны в следующем порядке");
+        System.out.println("Файлы успешно отсортированные в следующем порядке");
         for (var index : sortedIndexes) {
             System.out.println(paths.get(index));
         }
@@ -152,9 +152,9 @@ public class FileSorter {
 
 
     /**
-     * Отображает файлы с завсисимостями в соотвествующий им граф, для последующей работы
+     * Отображает файлы с зависимостями в соответствующий им граф, для последующей работы
      *
-     * @return получилось ли прочитать зависимости с файлов, нет ли неправильных зависивостей
+     * @return получилось ли прочитать зависимости с файлов, нет ли неправильных зависимостей
      */
     private boolean parseFilesToGraph() {
         // Записываем названия имеющихся файлов относительно папки

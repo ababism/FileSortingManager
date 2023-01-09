@@ -7,18 +7,18 @@ import java.util.Deque;
 import java.util.List;
 
 /**
- * Класс реализующий ориентрованный граф через список смежности
+ * Класс реализующий ориентированный граф через список смежности
  */
 public class Graph {
     // список смежности
     private List<List<Integer>> adjacencyList;
-    // количесво вершин
+    // количество вершин
     private final int numberOfVertexes;
 
     /**
      * Конструктор
      *
-     * @param numberOfVertexes количесво вершин в графе
+     * @param numberOfVertexes количество вершин в графе
      */
     public Graph(int numberOfVertexes) {
         this.numberOfVertexes = numberOfVertexes;
@@ -60,12 +60,12 @@ public class Graph {
     }
 
     /**
-     * Метод реаизующи топологическую графа без циклов (опять же с DFS)
+     * Метод реализующий топологическую графа без циклов (опять же с DFS)
      *
      * @return отсортированную деку
      */
     public Deque<Integer> topologicalSort() {
-        // вместо стека, так как стек в ждаве кажется вообще всегда хуже деки
+        // вместо стека, так как стек в джаве кажется вообще всегда хуже деки
         Deque<Integer> resultStack = new ArrayDeque<>();
         boolean[] traversed = new boolean[numberOfVertexes];
 
@@ -79,7 +79,7 @@ public class Graph {
     }
 
     /**
-     * Впомогательный метод для топсорта, реализует DFS (рекурсию влглубь графа) и выкладку в стек
+     * Вспомогательный метод для топсорта, реализует DFS (рекурсию вглубь графа) и выкладку в стек
      *
      * @param currentVertexIndex индекс текущей вершины
      * @param traversed          список вершин которые вы посещали
@@ -99,7 +99,7 @@ public class Graph {
     }
 
     /**
-     * Впомогательный метод для проверки на циклы, реализует DFS (рекурсию влглубь графа)
+     * Вспомогательный метод для проверки на циклы, реализует DFS (рекурсию вглубь графа)
      *
      * @param index              индекс текущей вершины
      * @param visited            список вершин которые вы проверяли
@@ -115,7 +115,7 @@ public class Graph {
         if (visited[index]) {
             return false;
         }
-        // отмечаем, что проходим вершину и что соотвественно ее проверили
+        // отмечаем, что проходим вершину и что соответственно ее проверили
         inCurrentTraversal[index] = true;
         visited[index] = true;
         List<Integer> adjacent = adjacencyList.get(index);
@@ -125,7 +125,7 @@ public class Graph {
             }
         }
 
-        // Заметаем хвост окзавшийся без циклов
+        // Заметаем хвост оказавшийся без циклов
         inCurrentTraversal[index] = false;
         return false;
     }
